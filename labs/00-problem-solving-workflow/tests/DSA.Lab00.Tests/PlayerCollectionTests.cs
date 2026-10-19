@@ -50,6 +50,16 @@ public sealed class PlayerCollectionTests
     }
 
     [Test]
+    public void SixSevenAmountInHighScore_ReturnsTrueIfContainsSixSeven()
+    {
+        PlayerCollection collection = CreateCollection();
+
+        bool contains = collection.HighScoreContains(67);
+
+        Assert.That(contains, Is.True);
+    }
+
+    [Test]
     public void ContainsName_ReturnsTrueWhenNameExists()
     {
         PlayerCollection collection = CreateCollection();
@@ -69,14 +79,15 @@ public sealed class PlayerCollectionTests
         Assert.That(contains, Is.False);
     }
 
+
     private static PlayerCollection CreateCollection()
     {
         return new PlayerCollection(new List<Player>
         {
-            new Player(101, "Amina", 120),
-            new Player(205, "Bo", 85),
-            new Player(734, "Cleo", 160),
-            new Player(910, "Dani", 105)
+            new Player(101, "Amina", 12),
+            new Player(205, "Bo", 80),
+            new Player(734, "Cleo", 16),
+            new Player(910, "Dani", 10)
         });
     }
 }

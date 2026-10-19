@@ -60,12 +60,23 @@ namespace DSA.Lab00
 
             foreach (Player player in _players)
             {
-                 if (player.Name.Contains(name))
+                 if (player.Name == name)
                 {
                     return true;
                 }
             }
             return false;
+        }
+
+        public bool HighScoreContains(int number)
+        {
+            Player? highScorePlayer = FindHighestScore();
+
+            if (highScorePlayer == null) return false;
+
+            int count = highScorePlayer.Score / number;
+
+            return count > 0; 
         }
     }
 }
