@@ -85,7 +85,7 @@ public sealed class PlayerCollectionTests
         return new PlayerCollection(new List<Player>
         {
             new Player(101, "Amina", 12),
-            new Player(205, "Bo", 80),
+            new Player(205, "Bo", 8),
             new Player(734, "Cleo", 16),
             new Player(910, "Dani", 10)
         });
