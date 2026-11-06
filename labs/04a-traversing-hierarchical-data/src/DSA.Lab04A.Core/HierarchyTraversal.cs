@@ -11,6 +11,8 @@ namespace DSA.Lab04A
     /// </summary>
     public static class HierarchyTraversal
     {
+        
+
         public static int CountNodes<T>(HierarchyNode<T> root)
         {
             if (root == null)
@@ -19,7 +21,15 @@ namespace DSA.Lab04A
             }
 
             // TODO: count this node, then count every child subtree.
-            throw new NotImplementedException();
+
+            int count = 1;
+            
+            foreach (HierarchyNode<T> child in root.Children)
+            {
+                count += CountNodes(child);
+            }
+
+            return count;
         }
 
         public static bool Contains<T>(HierarchyNode<T> root, T target)
@@ -30,7 +40,15 @@ namespace DSA.Lab04A
             }
 
             // TODO: compare the current node, then search child subtrees.
-            throw new NotImplementedException();
+
+            if (Equals(root.Value, target)) return true;
+
+            foreach (HierarchyNode<T> child in root.Children)
+            {
+                if (Contains(child, target) == true) return true;
+            }
+
+            return false;
         }
 
         public static IReadOnlyList<T> DepthFirstPreOrder<T>(HierarchyNode<T> root)
@@ -42,7 +60,16 @@ namespace DSA.Lab04A
 
             // TODO: return values in pre-order:
             // current node first, then each child subtree from left to right.
-            throw new NotImplementedException();
+
+            List<T> branches = new List<T>();
+            branches.Add(root.Value);
+
+            foreach (HierarchyNode<T> child in root.Children)
+            {
+                branches.AddRange(DepthFirstPreOrder(child)) //Note that AddRange is when you wanna add multiple items at once, and a simple Add won't work.
+            }
+
+            return branches;
         }
 
         public static int MaxDepth<T>(HierarchyNode<T> root)
@@ -54,7 +81,20 @@ namespace DSA.Lab04A
 
             // Depth is measured in edges from the root.
             // A single-node tree therefore has max depth 0.
-            throw new NotImplementedException();
+
+            int depth = 0;
+            if (root.Children.Count > 0)
+            {
+                int depth = 0;
+                
+                foreach (HierarchyNode<T> child in root.Childeren)
+                {
+                    int childDepth = MaxDepth(child) + 1;
+                    if (childDepth > depth) depth = childDepth;
+                }
+            }
+
+            return depth;
         }
     }
 }

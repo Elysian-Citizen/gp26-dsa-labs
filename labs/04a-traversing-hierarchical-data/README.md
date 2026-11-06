@@ -11,7 +11,7 @@ Games contain a lot of **hierarchical data**:
 - decision or behaviour trees;
 - file/folder-like content structures.
 
-In this lab you will work with a small general tree and practise the idea that makes recursive tree algorithms possible:
+In this lab you will work with a small general tree and practice the idea that makes recursive tree algorithms possible:
 
 > A tree is a node plus zero or more child trees.
 

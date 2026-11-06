@@ -62,5 +62,13 @@ namespace DSA.Lab03.Tests
             Assert.That(table.TryGetValue(6, out string? value), Is.True);
             Assert.That(value, Is.EqualTo("New"));
         }
+
+        [Test]
+        public void HashTable_ZeroBuckets()
+        {
+            var table = new IntHashTable<int>(0);
+            table.Set(1, 67)
+            Assert.That(table.Count, Is.EqualTo(1));
+        }
     }
 }

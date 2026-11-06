@@ -38,20 +38,36 @@ namespace DSA.Lab03
                     return;
                 }
             }
+            _count++;
             bucket.Add(new(key, value));
         }
 
         public bool TryGetValue(int key, out TValue value)
         {
             // TODO: search only the correct bucket.
-            value = default!;
-            throw new NotImplementedException();
+            value = default;
+
+            List<Entry<TValue>> bucket = _buckets[key % _buckets.Length];
+
+            for (int i = 0; i < bucket.Count; i++)
+            {
+                if (key == bucket[i].Key)
+                {
+                    value = bucket[i].Value;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool ContainsKey(int key)
         {
             // TODO: reuse the lookup behavior if useful.
-            throw new NotImplementedException();
+
+            List<Entry<TValue>> bucket = _buckets[key % _buckets.Length];
+
+            if (bucket.Count == 0) return false;
+            else return true;
         }
 
         private int GetBucketIndex(int key)
